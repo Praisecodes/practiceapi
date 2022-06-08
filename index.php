@@ -1,7 +1,7 @@
 <?php
     header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Headers: *");
+    header("Access-Control-Allow-Headers: Content-Type");
 
     $content_type = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : "Not Set";
 
