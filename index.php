@@ -2,7 +2,7 @@
     header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *");
 
-    $content_type = isset($_SERVER["CONTENT-TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : "Not Set";
+    $content_type = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : "Not Set";
 
     if($content_type === "application/json"){
         $contents = trim(file_get_contents("php://input"));
