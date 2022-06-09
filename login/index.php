@@ -5,6 +5,7 @@
     header("Access-Control-Allow-Credentials: true");
     header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+    header('Access-Control-Check: true');
 
     require_once "./connection.php";
 
