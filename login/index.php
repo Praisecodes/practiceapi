@@ -1,8 +1,8 @@
 <?php
-    if($_SERVER["REQUEST_METHOD"] === "GET"){
-        echo "This is an API not a Link!!";
-        exit;
-    }
+    // if($_SERVER["REQUEST_METHOD"] === "GET"){
+    //     echo "This is an API not a Link!!";
+    //     exit;
+    // }
 
     header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *");
