@@ -7,7 +7,7 @@
     header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
     header('Access-Control-Check: true');
 
-    require_once "./connection.php";
+    require_once "../connection.php";
 
     $content_type = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : "Not Set";
     $Fullname = null; $username = null; $password = null;
