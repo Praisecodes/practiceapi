@@ -24,8 +24,8 @@
         $password = testInput($decoded["password"]);
         
         echo json_encode([
-            "Username" => $username,
-            "Password" => $password
+            "Username" => $decoded["username"],
+            "Password" => $decoded["password"]
         ]);
     }
     else{
