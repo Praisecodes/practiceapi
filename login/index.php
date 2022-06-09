@@ -9,28 +9,17 @@
     require_once "../connection.php";
 
     $content_type = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : "Not Set";
-    $Fullname = null; $username = null; $password = null;
+    $username = null; $password = null;
 
     if($content_type === "application/json"){
         $contents = trim(file_get_contents("php://input"));
 
         $decoded = json_decode($contents, true);
 
-        $Fullname = testInput($decoded["Fullname"]);
         $username = testInput($decoded["username"]);
-
-        if($decoded["confirm_password"] === $decoded["password"]){
-            $password = testInput($decoded["confirm_password"]);
-        }
-        else{
-            echo json_encode([
-                "Passwords Do Not Match!!"
-            ]);
-            exit;
-        }
+        $password = testInput($decoded["password"]);
         
         echo json_encode([
-            "Fullname" => $Fullname,
             "Username" => $username,
             "Password" => $password
         ]);
