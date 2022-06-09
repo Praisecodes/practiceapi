@@ -20,8 +20,8 @@
 
         $decoded = json_decode($contents, true);
 
-        $username = testInput($decoded["username"]);
-        $password = testInput($decoded["password"]);
+        // $username = testInput($decoded["username"]);
+        // $password = testInput($decoded["password"]);
         
         echo json_encode([
             "Username" => $decoded["username"],
