@@ -19,6 +19,7 @@
         $contents = trim(file_get_contents("php://input"));
 
         $decoded = json_decode($contents, true);
+        http_response_code(404);
 
         // $username = testInput($decoded["username"]);
         // $password = testInput($decoded["password"]);
