@@ -20,7 +20,9 @@
 
         $decoded = json_decode($contents, true);
 
-        echo json_encode($decoded["username"]);
+        echo json_encode([
+            $decoded["username"]
+        ]);
     }
     else{
         echo json_encode([
