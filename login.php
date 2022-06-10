@@ -13,15 +13,18 @@
     require_once "../connection.php";
 
     $content_type = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : "Not Set";
-    //$username = null; $password = null;
+    $username = null; $password = null;
 
     if($content_type === "application/json"){
         $contents = trim(file_get_contents("php://input"));
 
         $decoded = json_decode($contents, true);
 
+        $username = testInput($decoded["username"]);
+        $password = testInput($decoded["password"]);
+
         echo json_encode([
-            $decoded["username"]
+            $username
         ]);
     }
     else{
