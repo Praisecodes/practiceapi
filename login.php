@@ -22,9 +22,9 @@
 
         $username = testInput($decoded["username"]);
         $password = testInput($decoded["password"]);
-
+        
         echo json_encode([
-            $username
+            $decoded["username"]
         ]);
     }
     else{
