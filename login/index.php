@@ -20,7 +20,7 @@
 
         $decoded = json_decode($contents, true);
 
-        json_encode($decoded);
+        echo json_encode($decoded);
     }
     else{
         echo json_encode([
