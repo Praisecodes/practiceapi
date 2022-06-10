@@ -19,33 +19,60 @@
         $confirm_password = TestInput($decoded["confirm_password"]);
         $password = TestInput($decoded["password"]);
 
-        $sql = "INSERT INTO user_details(fullname, username, userpassword) VALUES(?,?,?);";
+        $CheckSql = "SELECT * FROM user_details WHERE username = ?;";
 
-        if($confirm_password === $password){
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sss", $fullname, $username, $password);
+        $CheckStmt = $conn->prepare($CheckSql);
+        $CheckStmt->bind_param("s", $username);
 
-            if($stmt->execute()){
+        if($CheckStmt->execute()){
+            $result = $CheckStmt->get_result();
+
+            if($result->num_rows > 0){
                 echo json_encode([
-                    "Success"
+                    "This Username Is Already In Use!"
                 ]);
-                $stmt->close();
+                $CheckStmt->close();
                 $conn->close();
                 exit;
             }
             else{
-                echo json_encode([
-                    "A problem has occured\nPlease contact server side engineer"
-                ]);
-                $stmt->close();
-                $conn->close();
-                exit;
+                $sql = "INSERT INTO user_details(fullname, username, userpassword) VALUES(?,?,?);";
+
+                if($confirm_password === $password){
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("sss", $fullname, $username, $password);
+
+                    if($stmt->execute()){
+                        echo json_encode([
+                            "Success"
+                        ]);
+                        $stmt->close();
+                        $conn->close();
+                        exit;
+                    }
+                    else{
+                        echo json_encode([
+                            "A problem has occured\nPlease contact server side engineer"
+                        ]);
+                        $stmt->close();
+                        $conn->close();
+                        exit;
+                    }
+                }
+                else{
+                    echo json_encode([
+                        "Passwords Do Not Match!!"
+                    ]);
+                    exit;
+                }
             }
         }
         else{
             echo json_encode([
-                "Passwords Do Not Match!!"
+                "Fatal Error While Checking For Username Availability!\nPlease Contact Server Side Engineer!"
             ]);
+            $CheckStmt->close();
+            $conn->close();
             exit;
         }
     }
@@ -65,3 +92,4 @@
         return $data;
     }
 ?>
+        
